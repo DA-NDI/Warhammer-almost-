@@ -2,15 +2,14 @@
 
 include "auth.php";
 
-if (isset($_POST["submit"]) && $_POST["submit"] == "OK" &&($users = load_users()) !== FALSE && ($users = user_add($users, $_POST["login"],
- $_POST["passwd"])) !== FALSE && save_users($users))
+if (isset($_POST["submit"]) && $_POST["submit"] == "OK" && ($users = load_users()) !== FALSE && 
+	($users = user_add($users, $_POST["login"], $_POST["passwd"], $_POST["rdb"])) !== FALSE && save_users($users))
 {
 	header("Location: index.html");
-	echo "OK\n";
 }
 else
 {
-	header("Location: create.html");
-	echo "ERROR\n";
+	echo "<script type='text/javascript'>alert('There is already user with this login');
+window.location='create.html';</script>";
 }
 ?>

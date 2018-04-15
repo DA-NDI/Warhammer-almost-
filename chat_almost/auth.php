@@ -2,7 +2,7 @@
 /*
 ** file functions
 */
-$PRIVATE_DIR = "../private/";
+$PRIVATE_DIR = "./private/";
 function load_from_file($file_name)
 {
 	global $PRIVATE_DIR;
@@ -41,16 +41,19 @@ function save_to_file($file_name, $data)
 */
 $PASSWD_FILE = "passwd";
 $PASSWD_HASH = "whirlpool";
+
 function load_users()
 {
 	global $PASSWD_FILE;
 	return (load_from_file($PASSWD_FILE));
 }
+
 function save_users($users)
 {
 	global $PASSWD_FILE;
 	return (save_to_file($PASSWD_FILE, $users));
 }
+
 function user_get($users, $login)
 {
 	foreach ($users as $user_data)
@@ -58,31 +61,17 @@ function user_get($users, $login)
 			return ($user_data);
 	return (FALSE);
 }
-function user_chpasswd($users, $login, $old_passwd, $new_passwd)
-{
-	global $PASSWD_HASH;
-	if ($login == "" || $old_passwd == "" || $new_passwd == "")
-		return (FALSE);
-	for ($i = 0; $i < count($users); $i++)
-	{
-		if ($users[$i]["login"] == $login)
-		{
-			if ($users[$i]["passwd"] != hash($PASSWD_HASH, $old_passwd))
-				return (FALSE);
-			$users[$i]["passwd"] = hash($PASSWD_HASH, $new_passwd);
-			return ($users);
-		}
-	}
-	return (FALSE);
-}
-function user_add($users, $login, $passwd)
+
+function user_add($users, $login, $passwd, $clan)
 {
 	global $PASSWD_HASH;
 	if ($login === "" || $passwd === "" || user_get($users, $login) !== FALSE) // add radio button check
 		return (FALSE);
-	$users[] = array("login" => $login,	"passwd" => hash($PASSWD_HASH, $passwd));
+		print($clan);
+	$users[] = array("login" => $login,	"passwd" => hash($PASSWD_HASH, $passwd), "clan" => $clan);
 	return ($users);
 }
+
 function auth($login, $passwd)
 {
 	global $PASSWD_HASH;

@@ -8,13 +8,15 @@ include "auth.php";
 // 	echo '</script>';
 // 	return (FALSE);
 // }
+
 if (!auth($_POST["login"], $_POST["passwd"]))
 {
-	echo '<script language="javascript">';
-	echo 'alert("You wrote wrong login or password")';
-	echo '</script>';
-	header("Location: index.html");
+    echo "<script type='text/javascript'>alert('Wrong Username or Password');
+    window.location='index.html';</script>";
 }
+else
+    header("Location: switch.html");
+
 $_SESSION["loggued_on_user"] = $_POST["login"];
 ?>
 <!DOCTYPE html>
