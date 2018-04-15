@@ -1,30 +1,25 @@
 <?php
 require_once ('./Player.Class.php');
 require_once ('./PlayerOne.Class.php');
+require_once ('./Mars.class.php');
 require_once ('./PlayerTwo.Class.php');
+require_once ('./Ship.class.php');
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "password";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-} 
 
 $PlayerOne = new PlayerOne("One");
-$PlayerTwo = new PlayerOne("Two");
+$PlayerTwo = new PlayerTwo("Two");
+$ship1 = new MarsShip("Destroyer");
+$ship2 = clone $ship1;
+$_SESSION['fuel1'] = $ship1->get_fuel();
+$_SESSION['fuel2'] = $ship1->get_fuel();
 $PlayerTwo->set_hp(50000);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./jquery-3.3.1.js"></script>s
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="stylesheet" href="index.css">
 </head>
@@ -337,6 +332,7 @@ function put_PP()
 		<p id="Shield1">Shield: <span id="shield1"><?php echo $_SESSION['shield1'];?></span></p>
 		<p id="Speed1">Speed: <span id="speed1"><?php echo $_SESSION['speed1'];?></span></p>
 		<p id = "PP1">PP: <span id="pp1" value="<?php echo $_SESSION['pp1'];?>"></span></p>
+		<p id="Fuel1">FUEL: <span id="fuel01"><?php echo $_SESSION['fuel1'];?></span></p>
 	</div>
 	<div>
 		<button class="button" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
@@ -376,6 +372,7 @@ function put_PP()
 				<p id="Shield2">Shield: <span id="shield2"><?php echo $_SESSION['shield2'];?></span></p>
 				<p id="Speed2">Speed: <span id="speed2"><?php echo $_SESSION['speed2'];?></span></p>
 				<p id = "PP2">PP: <span id="pp2"><?php echo $_SESSION['pp2'];?></span></p>
+				<p id="Fuel2">FUEL: <span id="fuel02"><?php echo $_SESSION['fuel2'];?></span></p>
 			</div>
 			<div >
 				<button class="button" onmousedown="moveup2()" onmouseup="clearmove2()" ontouchstart="moveup2()">UP</button><br><br>
