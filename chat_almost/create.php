@@ -13,5 +13,4 @@ else
 	header("Location: create.html");
 	echo "ERROR\n";
 }
-
 ?>

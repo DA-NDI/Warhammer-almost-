@@ -114,7 +114,18 @@ label > input:checked + img
   border:1px solid white;
 }
 
+#start_sw
+{
+	margin-left: 10%;
 
+	position: absolute;
+}
+
+#chat_sw
+{
+	margin-left: 60%;
+	position: absolute;
+}
 
 
 

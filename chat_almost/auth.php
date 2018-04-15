@@ -18,6 +18,7 @@ function load_from_file($file_name)
 		return ([]);
 	return ($data);
 }
+
 function save_to_file($file_name, $data)
 {
 	global $PRIVATE_DIR;
@@ -77,13 +78,9 @@ function user_chpasswd($users, $login, $old_passwd, $new_passwd)
 function user_add($users, $login, $passwd)
 {
 	global $PASSWD_HASH;
-	if ($login === "" || $passwd === ""
-		|| user_get($users, $login) !== FALSE)
+	if ($login === "" || $passwd === "" || user_get($users, $login) !== FALSE) // add radio button check
 		return (FALSE);
-	$users[] = array(
-		"login" => $login,
-		"passwd" => hash($PASSWD_HASH, $passwd)
-	);
+	$users[] = array("login" => $login,	"passwd" => hash($PASSWD_HASH, $passwd));
 	return ($users);
 }
 function auth($login, $passwd)

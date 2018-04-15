@@ -14,7 +14,6 @@ if (!auth($_POST["login"], $_POST["passwd"]))
 	echo 'alert("You wrote wrong login or password")';
 	echo '</script>';
 	header("Location: index.html");
-
 }
 $_SESSION["loggued_on_user"] = $_POST["login"];
 ?>

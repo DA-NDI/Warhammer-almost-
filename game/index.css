@@ -3,7 +3,10 @@ canvas {
     background-color: #f1f1f1;
 }
 body {
+    margin-left: 20%;
+    padding: 0;
 	background: black;
+    /*background: grey;*/
 	color:grey;
 }
 #Restart {
