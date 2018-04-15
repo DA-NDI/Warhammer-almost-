@@ -2,7 +2,7 @@
 /*
 ** file functions
 */
-$PRIVATE_DIR = "./private/";
+$PRIVATE_DIR = "../private/";
 function load_from_file($file_name)
 {
 	global $PRIVATE_DIR;

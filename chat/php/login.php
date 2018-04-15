@@ -1,3 +1,16 @@
+<?php
+session_start();
+include "auth.php";
+if (!auth($_POST["login"], $_POST["passwd"]))
+{
+    echo "<script type='text/javascript'>alert('Wrong Username or Password');
+    window.location='../../index.html';</script>";
+}
+else
+    header("Location: ../html/switch.html");
+
+$_SESSION["loggued_on_user"] = $_POST["login"];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +20,7 @@ body
 {
     margin: auto;
     padding: auto;
-    background-image: url("resources/background.jpg") ;
+    background-image: url("../resources/background.jpg") ;
     background-position-x: center;
     background-position-y: center;
     background-size: cover;
@@ -20,10 +33,10 @@ body
 iframe 
 {
     background-color: white;
-    /*border: 5px solid;*/
+    border: 5px solid;
     margin: 20px 5% 0 5%;
     /*color: transparent;*/
-/*    opacity: 0.4;*/
+    opacity: 0.4;
 }
 	</style>
 </head>

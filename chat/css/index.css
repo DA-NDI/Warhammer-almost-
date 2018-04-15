@@ -2,7 +2,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	background-image: url("resources/background.jpg") ;
+	background-image: url("../resources/background.jpg") ;
 	background-position-x: center;
     background-position-y: center;
     background-size: cover;
@@ -15,14 +15,12 @@ body
 }
 #motto
 {
-	/*margin-left: 50px;*/
 	width:87%;
 	position: absolute;
     font: 24px Dosics;
     text-align: center;
     padding-top: 25px;
 	height: 75px;
-	/*border: 1px solid;*/
 	color: white;
 	opacity: 0.7;
 }
@@ -30,26 +28,20 @@ body
 {
 	position: relative;
 	background-color: #224866;
-	/*background-color: grey;*/
 	padding: 30px !important;
 	margin: 0px auto;
 	width: 400px;
 	height: 450px;
-	/*border: 1px solid;*/
-	/*border-radius: 1px;*/
-	margin-left: 38vw; /* change */
-	margin-top: 127px;  /* change */
+	margin-left: 38vw;
+	margin-top: 127px;
 	padding: 5px;
 }
 
 #fields
 {
 	position: absolute;
-	/*border: 1px solid;*/
 	margin-top: 175px;
 	width: 70%;
-
-
 }
 
 input[type=submit]
@@ -65,9 +57,7 @@ input[type=submit]
 }
 input[type=submit]:hover
 {
-
 	background-color: #386F9E;
-	/*font: 22px Sans-serif;*/
 }
 
 input[type=text], input[type=password]
@@ -86,9 +76,7 @@ input[type=text], input[type=password]
 {
 	margin-top: 70px;
 	text-align: center;
-	/*position: absolute;*/
 	color: white;
-	
 }
 
 #callofgame a
@@ -105,17 +93,19 @@ input[type=text], input[type=password]
 }
 
 label > input
-{ /* HIDE RADIO */
-  visibility: hidden; /* Makes input not-clickable */
-  position: absolute; /* Remove input from document flow */
+{
+  visibility: hidden;
+  position: absolute;
 }
+
 label > input + img
-{ /* IMAGE STYLES */
+{
   cursor:pointer;
   border:1px solid transparent;
 }
+
 label > input:checked + img
-{ /* (RADIO CHECKED) IMAGE STYLES */
+{
   border:1px solid white;
 }
 
@@ -131,7 +121,7 @@ label > input:checked + img
 {
 	margin-left: 70%;
 	position: absolute;
-		margin-top: 200px;
+	margin-top: 200px;
 }
 
 #logout_sw
@@ -141,7 +131,6 @@ label > input:checked + img
 	height: 50px;
 	font: 36px Sans-serif;
 	color: white;
-	
 	background-color: #447FB4;
 }
 
@@ -156,7 +145,6 @@ label > input:checked + img
 {
 	float: left;
 	display: block;
-	
 	margin-left: 10%;
 }
 
@@ -164,16 +152,14 @@ label > input:checked + img
 {
 	margin-left: -10%;
 }
+
 form
 {
 	width: 400px;
-
 }
 
 #subm
 {
-	/*position: absolute;*/
-
 	width: 100%;
 }
 
