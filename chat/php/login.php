@@ -35,7 +35,6 @@ iframe
     background-color: white;
     border: 5px solid;
     margin: 20px 5% 0 5%;
-    /*color: transparent;*/
     opacity: 0.4;
 }
 	</style>

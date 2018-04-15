@@ -5,6 +5,7 @@
 	<style>
 body
 {
+    position: relative;
     margin: auto;
     padding: auto;
     background-image: url("../resources/background.jpg") ;
@@ -20,17 +21,43 @@ body
 iframe 
 {
     background-color: white;
-    /*border: 5px solid;*/
     margin: 20px 5% 0 5%;
-    /*color: transparent;*/
-/*    opacity: 0.4;*/
 }
+.logout_sw
+{
+    margin-top: -628px;
+    position: absolute;
+    width: 5%;
+    height: 35px;
+    font: 14px Sans-serif;
+    color: white;
+    background-color: #447FB4;
+}
+.logout_sw a
+{
+    color: white;
+    opacity: 0.7;
+    text-decoration: none; 
+}
+.logout_sw a:hover
+{
+    text-decoration: none;
+}
+#btc
+{
+    position: absolute;
+    margin-top: -588px;: 
+}
+
 	</style>
 </head>
 <body>
 
 <iframe name="chat" width="90%" height="550px" src="../php/chat.php" align="center"></iframe>
 <iframe id="input_field" name="speak" width="90%" height="50px" src="../php/speak.php" align="center"></iframe>
+
+<a href="../../index.html"><div class="logout_sw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOG OUT</div></a>
+<a href="switch.html"><div class="logout_sw" id="btc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BACK</div></a>
 
 </body>
 </html>

@@ -65,7 +65,7 @@ function user_get($users, $login)
 function user_add($users, $login, $passwd, $clan)
 {
 	global $PASSWD_HASH;
-	if ($login === "" || $passwd === "" || user_get($users, $login) !== FALSE) // add radio button check
+	if ($login === "" || $passwd === "" || user_get($users, $login) !== FALSE)
 		return (FALSE);
 		print($clan);
 	$users[] = array("login" => $login,	"passwd" => hash($PASSWD_HASH, $passwd), "clan" => $clan);

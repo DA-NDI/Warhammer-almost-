@@ -86,7 +86,7 @@ input[type=text], input[type=password]
     text-decoration: none;    
 }
 
-#callofgame a:hover , #logout_sw a:hover
+#callofgame a:hover
 {
 	color: #437CB4;
     text-decoration: none;
@@ -141,6 +141,11 @@ label > input:checked + img
     text-decoration: none; 
 }
 
+#logout_sw a:hover
+{
+    text-decoration: none;
+}
+
 #al_rads label
 {
 	float: left;
@@ -167,54 +172,3 @@ form
 {
 	margin-left: 9.3%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
