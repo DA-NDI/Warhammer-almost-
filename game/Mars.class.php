@@ -9,7 +9,7 @@ Class MarsShip implements Ship{
 		$this->shield = 0;
 		$this->fuel = 100;
 		$this->speed = 1;
-		$this->weapon = "Laser";
+//		$this->weapon = "Laser";
 //		if (Self::verbose == TRUE){
 //		echo "MarsShip constructed\n";
 //	}

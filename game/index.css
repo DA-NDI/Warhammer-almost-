@@ -3,43 +3,62 @@ canvas {
     background-color: #f1f1f1;
 }
 body {
+    background-image: url("./pictures/back.jpg");
     position: absolute;
     margin-left: 19%;
     margin-right: 19%;
     padding: 0;
-	background: black;
     /*background: grey;*/
 	color:grey;
 }
 #Restart {
 	position: absolute;
-	top: 10%;
-	right: 1%;
+	top: 85%;
+	right: 48%;
 	height: 70px;
 	border-radius: 10px;
 	border: none;
-	background: linear-gradient(grey, black);
+    border-style: inset;
+    border-width: 2px;
+    border-color: rgb(44, 51, 57);
+	background: linear-gradient(grey, rgb(15, 15, 15));
 	color: black;
             transition: 1s;
 }
 #Restart:hover
         {
-            color:red;
+            color:white;
             transition: 1s;
             transform: scale(1.2, 1.2);
         }
 .button {
     display: flex;
-    justify-content:space-between;     
-	background-color: grey;
+    justify-content:space-between;
+    background-color: grey;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 4px 4px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 15px
-    font-size: 16px;
+    border-radius: 1px
+    font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
+    border-style: inset;
+    border-width: 4px;
+    border-color: rgb(44, 51, 57);
+    background: linear-gradient(rgb(15, 15, 15), dimgray);
+}
+.arrow {
+    background-color: LightSlateGray ;
+    color: black;
+    border: 8px solid #555555;
+    border-radius: 20%;
+}
+
+.arrow:hover {
+    background-color: #555555;
+    color: white;
+    border-radius: 50%;
 }

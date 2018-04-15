@@ -11,9 +11,11 @@ $PlayerOne = new PlayerOne("One");
 $PlayerTwo = new PlayerTwo("Two");
 $ship1 = new MarsShip("Destroyer");
 $ship2 = clone $ship1;
+
+
 $_SESSION['fuel1'] = $ship1->get_fuel();
 $_SESSION['fuel2'] = $ship1->get_fuel();
-$PlayerTwo->set_hp(50000);
+$PlayerTwo->set_hp(500);
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +31,14 @@ $PlayerTwo->set_hp(50000);
 		var playerOneShip;
 		var playerTwoShip;
 		var obstacle;
+		var turn = 1;
+		var x1;
+		var x2;
+		var y1;
+		var y2;
+		var hp1;
+		var hp2;
+		var index = 0;
 //		var player1 = {
   //  	login:   get from php (sql?),
     //	ship1: ,
@@ -39,7 +49,7 @@ $PlayerTwo->set_hp(50000);
 //		var hp1 = 0;
 //		var hp2 = 0;
 
-		function startGame($ship_select) {
+function startGame($ship_select) {
 
 
 
@@ -54,7 +64,7 @@ $PlayerTwo->set_hp(50000);
 	obstacle = new component(100, 170, "./pictures/RPzV8fB.png", 200, 300, "image", "obstacle_1");
 	obstacle1 = new component(150, 150, "./pictures/asteroid3.png", 400, 700, "image", "obstacle_2");
 	obstacle2 = new component(150, 120, "./pictures/asteroid2.png", 1100, 300, "image", "obstacle_3");
-	background = new component(1500, 1000, "./pictures/canvas_background.jpg", 0, 0, "image", "bg");
+	background = new component(1500, 1000, "./pictures/canvas_background1.jpg", 0, 0, "image", "bg");
 	myGameArea.start();
 }
 
@@ -76,6 +86,7 @@ clear : function() {
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 },
 stop : function() {
+	console.log("----------------------------------------");
 	clearInterval(this.interval);
 }
 }
@@ -93,20 +104,13 @@ function component(width, height, color, x, y, type, id) {
 	this.speedY = 0;    
 	this.x = x;
 	this.y = y;    
-	if (id == "Player1")
-	{
-		this.x1 = x;
-		this.y1 = y;
-	}
-	else if (id == "Player2")
-	{
-		this.x1 = x;
-		this.y1 = y;
-	}
+	
 
 	this.update = function() {
 		getValue();
 		ctx = myGameArea.context;
+
+
 //        if (id = "beam")
 //      	{
 //    		console.log("+++++++++++++++++++++++");
@@ -114,19 +118,37 @@ function component(width, height, color, x, y, type, id) {
 //        	}
 if (type == "image") {
 //	console.log("object:", this.id);
-	if ((this.x < 0 || this.x > 1500 || this.y > 1000 || this.y < 0 || ((this.x >= 200 && this.x <= 270) && (this.y >= 300 && this.y <= 470)) || ((this.x >= 1100 && this.x <= 1250) && (this.y >= 300 && this.y <= 420)) || ((this.x >= 400 && this.x <= 550) && (this.y >= 700 && this.y <= 850))) && (this.id == "Player1" || this.id == "Player2"))
+if ((this.x < 0 || this.x > 1500 || this.y > 1000 || this.y < 0 || ((this.x >= 200 && this.x <= 270) && (this.y >= 300 && this.y <= 470)) || ((this.x >= 1100 && this.x <= 1250) && (this.y >= 300 && this.y <= 420)) || ((this.x >= 400 && this.x <= 550) && (this.y >= 700 && this.y <= 850))) && (this.id == "Player1" || this.id == "Player2"))
+{
+	if (this.id == "Player1")
+		alert("Player1 is dead!");
+	else if (this.id == "Player2")
+		alert("Player2 is dead");
+	this.speedX = 0;
+	myGameArea.stop();
+}
+if ((id == "Player1" && hp1 <= 0) || (id == "Player2" && hp2 <= 0)){
+	if (id == "Player1" && hp1 <= 0)
 	{
-		if (this.id == "Player1")
-			alert("Player1 is dead!");
-		else if (this.id == "Player2")
-			alert("Player2 is dead");
-		this.speedX = 0;
-		myGameArea.stop();
-	}
-	ctx.drawImage(this.image, 
-		this.x, 
-		this.y,
-		this.width, this.height);
+		alert("Player1 is dead!");
+//			PlayerTwoShip.clear();
+}
+else if (id == "Player2" && hp2 <= 0)
+{
+	alert("Player 2 is DEAD!");
+//			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+}
+this.speedX = 0;
+myGameArea.stop();
+return;
+}
+
+
+
+ctx.drawImage(this.image, 
+	this.x, 
+	this.y,
+	this.width, this.height);
 } else {
 
 	ctx.fillStyle = color;
@@ -136,29 +158,43 @@ if (type == "image") {
 if (this.id == "Player1")
 {
 //	console.log("x = " + this.x + " y = " + this.y);
-	x1 = this.x;
-	y1 = this.y;
-	document.getElementById("piu1").addEventListener("click", function(){ Laser(1, x1, y1, 1); }, {once : true});
+x1 = this.x;
+y1 = this.y;
+document.getElementById("piu1").addEventListener("click", function(){ Laser(1, x1, y1, 1); }, {once : true});
 //	document.getElementById("piu1").removeEventListener("click", function(){ Laser(1, x1, y1,); });
-	document.getElementById("piu1").addEventListener("click", function(){ fire(x1, y1, x2, y2, 1, 1); }, {once : true});
+document.getElementById("piu1").addEventListener("click", function(){ fire(x1, y1, x2, y2, 1, 1); }, {once : true});
 //	document.getElementById("piu1").removeEventListener("click", function(){ fire(x1, y1, x2, y2, 1); });
-	document.getElementById("piu11").addEventListener("click", function(){ Laser(1, x1, y1, 5); }, {once : true});
-	document.getElementById("piu11").addEventListener("click", function(){ fire(x1, y1, x2, y2, 1, 5); }, {once : true});
+document.getElementById("piu11").addEventListener("click", function(){ Laser(1, x1, y1, 5); }, {once : true});
+document.getElementById("piu11").addEventListener("click", function(){ fire(x1, y1, x2, y2, 1, 5); }, {once : true});
 
 }
 else if (this.id == "Player2")
 {
-	console.log("x = " + this.x + " y = " + this.y);
-	x2 = this.x;
-	y2 =  parseInt(this.y);
-	document.getElementById("piu2").addEventListener("click", function(){ Laser(2, x2, y2, 1); }, {once : true});
+//	console.log("x = " + this.x + " y = " + this.y);
+x2 = this.x;
+y2 =  parseInt(this.y);
+document.getElementById("piu2").addEventListener("click", function(){ Laser(2, x2, y2, 1); }, {once : true});
 //	document.getElementById("piu2").removeEventListener("click", function(){ Laser(2, x2, y2,); });
-	document.getElementById("piu2").addEventListener("click", function(){ fire(x1, y1, x2, y2, 2, 1); }, {once : true});
+document.getElementById("piu2").addEventListener("click", function(){ fire(x1, y1, x2, y2, 2, 1); }, {once : true});
 //	document.getElementById("piu2").removeEventListener("click", function(){ fire(x1, y1, x2, y2, 2); });
-	document.getElementById("piu22").addEventListener("click", function(){ Laser(2, x2, y2, 5); }, {once : true});
-	document.getElementById("piu22").addEventListener("click", function(){ fire(x1, y1, x2, y2, 2, 5); }, {once : true});
+document.getElementById("piu22").addEventListener("click", function(){ Laser(2, x2, y2, 5); }, {once : true});
+document.getElementById("piu22").addEventListener("click", function(){ fire(x1, y1, x2, y2, 2, 5); }, {once : true});
 }
+
+if (Math.abs(x1 - x2) < 200 && (Math.abs(y1 - y2) < 200) && this.id == "Player1") {
+	console.log ("x1 y1 x2 y2" + x1 + " " + y1 + " " + x2 + " " + y2 + " ");
+	hp2 = parseFloat(document.getElementById("hp2").value) - 1;
+	setValue(2, hp2)
 }
+else if (Math.abs(x1 - x2) < 50 && Math.abs(y1 - y2) < 50 && this.id == "Player2") {
+	hp1 = parseFloat(document.getElementById("hp1").value) - 1;
+	setValue(1, hp1)
+}
+
+
+}
+
+
 this.newPos = function() {
 	this.x += this.speedX;
 	this.y += this.speedY;        
@@ -289,17 +325,17 @@ function getRandInteger(min, max) {
 function setValue(player, val)
 {
 	if (player == 2)
-	document.getElementById("hp2").innerHTML = val;
-else if (player == 1)
-	document.getElementById("hp1").innerHTML = val;
+		document.getElementById("hp2").innerHTML = val;
+	else if (player == 1)
+		document.getElementById("hp1").innerHTML = val;
 }
 function getValue()
 {
 	hp2 = parseFloat(document.getElementById("hp2").value);
 	hp1 = parseFloat(document.getElementById("hp1").value);
 //	eval(hp2);
-	setValue(2, hp2);
-	setValue(1, hp1);
+setValue(2, hp2);
+setValue(1, hp1);
 //	x = 5;
 //	document.getElementById("hp2").innerHTML = 50;
 //	document.getElementById("ret").innerHTML = x;
@@ -315,12 +351,16 @@ function Restart()
 	if (window.confirm ("Are you sure to restart? All progress will be lost"))
 		location.href = 'game.php';
 }
-function put_PP()
+function put_PP(indexx)
 {
 //	document.getElementById("dice_c").addEventListener("click", function(){});
-	var pp = document.getElementById("dice").innerHTML;
-	console.log("pp = ====" + pp);
-	document.getElementById("pp1").span.text = pp;
+var pp = document.getElementById("dice").innerHTML;
+console.log("pp = ====" + pp);
+if (indexx == 1)
+	document.getElementById("ppp1").innerHTML = pp;
+else if (indexx == 0)
+	document.getElementById("ppp2").innerHTML = pp;
+index++;
 
 }
 </script>
@@ -329,63 +369,63 @@ function put_PP()
 	<div>
 		<p id="Player1">Player 1</p>
 		<p id="Life1">Life: <output id="hp1" value="<?php echo $_SESSION['hp1'];?>"><?php echo $_SESSION['hp1'];?></span></p>
-		<p id="Shield1">Shield: <span id="shield1"><?php echo $_SESSION['shield1'];?></span></p>
-		<p id="Speed1">Speed: <span id="speed1"><?php echo $_SESSION['speed1'];?></span></p>
-		<p id = "PP1">PP: <span id="pp1" value="<?php echo $_SESSION['pp1'];?>"></span></p>
-		<p id="Fuel1">FUEL: <span id="fuel01"><?php echo $_SESSION['fuel1'];?></span></p>
-	</div>
-	<div class="button">
-		<button  onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
-		<button  onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
-		<button  onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
-		<button  onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
-		<button id="piu1" >PIU-PIU</button>
-		<button id="piu11" >PIU-PIU-PIU</button>
-		<button id="megapiu1" onclick="DeathStar(1)">MEGA PIU-PIU</button>
-		<script>
-			function DeathStar(player){
-				if (player == 1)
-				{
-					explosion1 = new component(1500, 1000, "./death_explosion.gif", 0, 0, "image", "beam");
-					alert("Player2 is dead!");
-					updateGameArea();
-				}
-				else if (player = 2)
-				{
-					explosion1 = new component(1500, 1000, "./explosion2.png", 0, 0, "image", "beam");
-					alert("Player1 is dead");
-					updateGameArea();
-				}
-				myGameArea.stop();
-			}
-		</script>
-	</div>
-	<div>
-		<div>Throw me</div>
-		<button class="button" id="dice_c" onclick="getRandInteger(1,7); put_PP();">DICE</button>
-		<output name = "dice" value = 5 id="dice"></output>
-	</div>
-	<div>
-		<p id="Player2">Player 2</p>
-		<p id="Life2">Life: <output id="hp2" value="<?php echo $_SESSION['hp2'];?>"><?php echo $_SESSION['hp2'];?></span></p>
-			<!--		<p id="return">Ret: <output id="ret" value="getValue()"</p> -->
-				<p id="Shield2">Shield: <span id="shield2"><?php echo $_SESSION['shield2'];?></span></p>
-				<p id="Speed2">Speed: <span id="speed2"><?php echo $_SESSION['speed2'];?></span></p>
-				<p id = "PP2">PP: <span id="pp2"><?php echo $_SESSION['pp2'];?></span></p>
-				<p id="Fuel2">FUEL: <span id="fuel02"><?php echo $_SESSION['fuel2'];?></span></p>
-			</div>
-			<div class="button">
-				<button  onmousedown="moveup2()" onmouseup="clearmove2()" ontouchstart="moveup2()">UP</button><br><br>
-				<button  onmousedown="moveleft2()" onmouseup="clearmove2()" ontouchstart="moveleft2()">LEFT</button>
-				<button  onmousedown="moveright2()" onmouseup="clearmove2()" ontouchstart="moveright2()">RIGHT</button><br><br>
-				<button  onmousedown="movedown2()" onmouseup="clearmove2()" ontouchstart="movedown2()">DOWN</button>
-				<button id="piu2" >PIU-PIU</button>
-				<button id="piu22" >PIU-PIU-PIU</button>
-				<button id="megapiu2" onclick="DeathStar(2)">MEGA PIU-PIU</button>
-			</div>
+			<p id="Shield1">Shield: <span id="shield1"><?php echo $_SESSION['shield1'];?></span></p>
+			<p id="Speed1">Speed: <span id="speed1"><?php echo $_SESSION['speed1'];?></span></p>
+			<p id = "PP1">PP: <span id="ppp1"></span></p>
+			<p id="Fuel1">FUEL: <span id="fuel01"><?php echo $_SESSION['fuel1'];?></span></p>
 		</div>
-		<button onclick='Restart();' id="Restart" class="float-left submit-button" >RESTART</button>
-		<p>Piu Piu Game.</p>
+		<div class="button">
+			<button class="arrow" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+			<button class="arrow" style="margin-right: 80px;" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+			<button class="arrow" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+			<button class="arrow" style="margin-bottom: 40px;" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button><br><br>
+			<button id="piu1" >PIU-PIU</button>
+			<button id="piu11" >PIU-PIU-PIU</button>
+			<button id="megapiu1" onclick="DeathStar(1)">MEGA PIU-PIU</button>
+			<script>
+				function DeathStar(player){
+					if (player == 1)
+					{
+						explosion1 = new component(1500, 1000, "./pictures/death_explosion.gif", 0, 0, "image", "beam");
+						alert("Player2 is dead!");
+						updateGameArea();
+					}
+					else if (player == 2)
+					{
+						explosion1 = new component(1500, 1000, "./pictures/explosion2.png", 0, 0, "image", "beam");
+						alert("Player1 is dead");
+						updateGameArea();
+					}
+					myGameArea.stop();
+				}
+			</script>
+		</div>
+		<div>
+			<div>Throw me</div>
+			<button class="button" id="dice_c" onclick="getRandInteger(1,7); put_PP(index % 2);">DICE</button></br>
+			<output name = "dice" value = 5 id="dice"></output>
+		</div>
+		<div>
+			<p id="Player2">Player 2</p>
+			<p id="Life2">Life: <output id="hp2" value="<?php echo $_SESSION['hp2'];?>"><?php echo $_SESSION['hp2'];?></span></p>
+				<!--		<p id="return">Ret: <output id="ret" value="getValue()"</p> -->
+					<p id="Shield2">Shield: <span id="shield2"><?php echo $_SESSION['shield2'];?></span></p>
+					<p id="Speed2">Speed: <span id="speed2"><?php echo $_SESSION['speed2'];?></span></p>
+					<p id = "PP2">PP: <span id="ppp2"></span></p>
+					<p id="Fuel2">FUEL: <span id="fuel02"><?php echo $_SESSION['fuel2'];?></span></p>
+				</div>
+				<div class="button">
+					<button class="arrow" onmousedown="moveup2()" onmouseup="clearmove2()" ontouchstart="moveup2()">UP</button><br><br>
+					<button class="arrow" style="margin-right: 80px;" onmousedown="moveleft2()" onmouseup="clearmove2()" ontouchstart="moveleft2()">LEFT</button>
+					<button class="arrow" onmousedown="moveright2()" onmouseup="clearmove2()" ontouchstart="moveright2()">RIGHT</button><br><br>
+					<button class="arrow" style="margin-bottom: 40px;" onmousedown="movedown2()" onmouseup="clearmove2()" ontouchstart="movedown2()">DOWN</button><br><br>
+					<button id="piu2" >PIU-PIU</button>
+					<button id="piu22" >PIU-PIU-PIU</button>
+					<button id="megapiu2" onclick="DeathStar(2)">MEGA PIU-PIU</button>
+				</div>
+			</div>
+			<button onclick='Restart();' id="Restart" class="float-left submit-button" >RESTART</button>
+			<p>Piu Piu Game.</p>
 
-	</body>
-	</html>
+		</body>
+		</html>

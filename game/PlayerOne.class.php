@@ -5,7 +5,7 @@ session_start();
 Class PlayerOne extends Player{
 	public function __construct($name) 
 	{
-			$this->hp = 50000;
+			$this->hp = 500;
 			$_SESSION['hp1'] = $this->hp;
 			$this->shield = 0;
 			$_SESSION['shield1'] = $this->shield;
