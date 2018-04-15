@@ -10,7 +10,9 @@ Class MarsShip implements Ship{
 		$this->fuel = 100;
 		$this->speed = 1;
 		$this->weapon = "Laser";
-		echo "MarsShip constructed\n";
+//		if (Self::verbose == TRUE){
+//		echo "MarsShip constructed\n";
+//	}
 	}
 	public function __toString(){
 		if (Self::$verbose == TRUE){

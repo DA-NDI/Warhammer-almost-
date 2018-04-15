@@ -34,7 +34,7 @@ abstract class Player{
 
 	}
 		public	static function doc() {
-			$content = file_get_contents("./Player.doc.txt");
+			$content = file_get_contents("./doc/Player.doc.txt");
 			print("$content\n");
 			return;
 		}

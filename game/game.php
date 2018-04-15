@@ -19,7 +19,7 @@ $PlayerTwo->set_hp(50000);
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="./jquery-3.3.1.js"></script>s
+	<script src="./jquery/jquery-3.3.1.js"></script>s
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="stylesheet" href="index.css">
 </head>
@@ -46,15 +46,15 @@ $PlayerTwo->set_hp(50000);
 //	var ship1 = prompt("Player One Please Choose fleet:");
 //			if (ship1 != null) {
 
-	var mars_class = "Mars_class.png";
-	var Grand_cruiser = "Executor_Class_Grand_Cruiser.png";
-	var TotalDestroy = "TotalDestroy.png";
-	playerOneShip = new component(50, 20, "Mars_Class.png", 10, 10, "image", "Player1");
-	playerTwoShip = new component(50, 20, "Executor_Class_Grand_Cruiser.png", 1420, 960, "image", "Player2");
-	obstacle = new component(100, 170, "RPzV8fB.png", 200, 300, "image", "obstacle_1");
-	obstacle1 = new component(150, 150, "asteroid3.png", 400, 700, "image", "obstacle_2");
-	obstacle2 = new component(150, 120, "asteroid2.png", 1100, 300, "image", "obstacle_3");
-	background = new component(1500, 1000, "canvas_background.jpg", 0, 0, "image", "bg");
+	var mars_class = "./pictures/Mars_class.png";
+	var Grand_cruiser = "./pictures/Executor_Class_Grand_Cruiser.png";
+	var TotalDestroy = "./pictures/TotalDestroy.png";
+	playerOneShip = new component(50, 20, "./pictures/Mars_Class.png", 10, 10, "image", "Player1");
+	playerTwoShip = new component(50, 20, "./pictures/Executor_Class_Grand_Cruiser.png", 1420, 960, "image", "Player2");
+	obstacle = new component(100, 170, "./pictures/RPzV8fB.png", 200, 300, "image", "obstacle_1");
+	obstacle1 = new component(150, 150, "./pictures/asteroid3.png", 400, 700, "image", "obstacle_2");
+	obstacle2 = new component(150, 120, "./pictures/asteroid2.png", 1100, 300, "image", "obstacle_3");
+	background = new component(1500, 1000, "./pictures/canvas_background.jpg", 0, 0, "image", "bg");
 	myGameArea.start();
 }
 
@@ -313,7 +313,7 @@ function getValue()
 function Restart()
 {
 	if (window.confirm ("Are you sure to restart? All progress will be lost"))
-		location.href = 'index.php';
+		location.href = 'game.php';
 }
 function put_PP()
 {
@@ -334,11 +334,11 @@ function put_PP()
 		<p id = "PP1">PP: <span id="pp1" value="<?php echo $_SESSION['pp1'];?>"></span></p>
 		<p id="Fuel1">FUEL: <span id="fuel01"><?php echo $_SESSION['fuel1'];?></span></p>
 	</div>
-	<div>
-		<button class="button" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
-		<button class="button" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
-		<button class="button" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
-		<button class="button" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+	<div class="button">
+		<button  onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+		<button  onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+		<button  onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+		<button  onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
 		<button id="piu1" >PIU-PIU</button>
 		<button id="piu11" >PIU-PIU-PIU</button>
 		<button id="megapiu1" onclick="DeathStar(1)">MEGA PIU-PIU</button>
@@ -374,11 +374,11 @@ function put_PP()
 				<p id = "PP2">PP: <span id="pp2"><?php echo $_SESSION['pp2'];?></span></p>
 				<p id="Fuel2">FUEL: <span id="fuel02"><?php echo $_SESSION['fuel2'];?></span></p>
 			</div>
-			<div >
-				<button class="button" onmousedown="moveup2()" onmouseup="clearmove2()" ontouchstart="moveup2()">UP</button><br><br>
-				<button class="button" onmousedown="moveleft2()" onmouseup="clearmove2()" ontouchstart="moveleft2()">LEFT</button>
-				<button class="button" onmousedown="moveright2()" onmouseup="clearmove2()" ontouchstart="moveright2()">RIGHT</button><br><br>
-				<button class="button" onmousedown="movedown2()" onmouseup="clearmove2()" ontouchstart="movedown2()">DOWN</button>
+			<div class="button">
+				<button  onmousedown="moveup2()" onmouseup="clearmove2()" ontouchstart="moveup2()">UP</button><br><br>
+				<button  onmousedown="moveleft2()" onmouseup="clearmove2()" ontouchstart="moveleft2()">LEFT</button>
+				<button  onmousedown="moveright2()" onmouseup="clearmove2()" ontouchstart="moveright2()">RIGHT</button><br><br>
+				<button  onmousedown="movedown2()" onmouseup="clearmove2()" ontouchstart="movedown2()">DOWN</button>
 				<button id="piu2" >PIU-PIU</button>
 				<button id="piu22" >PIU-PIU-PIU</button>
 				<button id="megapiu2" onclick="DeathStar(2)">MEGA PIU-PIU</button>
