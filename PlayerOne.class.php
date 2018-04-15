@@ -5,7 +5,7 @@ session_start();
 Class PlayerOne extends Player{
 	public function __construct($name) 
 	{
-			$this->hp = 5;
+			$this->hp = 50000;
 			$_SESSION['hp1'] = $this->hp;
 			$this->shield = 0;
 			$_SESSION['shield1'] = $this->shield;
@@ -14,5 +14,9 @@ Class PlayerOne extends Player{
 			$this->speed = 1;
 			$_SESSION['spped1'] = $this->speed;
 //			echo ("Player".$name."constructed\n");
+	}
+	public function get_pp() {
+		return $this->pp;
+
 	}
 }

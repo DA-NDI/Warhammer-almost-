@@ -13,4 +13,8 @@ Class PlayerTwo extends Player{
 			$_SESSION['spped2'] = $this->speed;
 //			echo ("Player".$name."constructed\n");
 	}
+	public function get_pp() {
+		return $this->pp;
+
+	}
 }
