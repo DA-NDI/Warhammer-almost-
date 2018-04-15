@@ -44,7 +44,9 @@ date_default_timezone_set("Europe/Kiev");
 $messages = load_from_file("chat");
 foreach ($messages as $data)
 {
+	print_r($data); // del me 
 	echo date("[H:i] ", $data["time"]) ."<b>". $data["login"] ."</b>: ". $data["msg"] ."<br />\n";
+	//	echo date("[H:i] ", $data["time"]) ."<b>". $data["login"] ."</b>: ". $data["msg"] ."<br />\n";
 }
 ?>
 

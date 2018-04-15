@@ -96,7 +96,19 @@ input[type=text], input[type=password]
     text-decoration: none;
 }
 
-
+        .clans
+        {
+            margin-left: 6%;
+        }
+        #al_rads
+        {
+            position: relative;
+            margin-left: 20px;
+        }
+        #subm
+        {
+            position: absolute;
+        }
 
 
 
