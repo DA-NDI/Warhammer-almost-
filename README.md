@@ -1,7 +1,10 @@
 # Warhammer-almost-
 Educational project in 42 school. Simple piu-piu warhammer game with chat. 
+
 Used instrumentarium : PHP, JS, JQuery, HTML, CSS, MySQL.
+
 Tested on localhost with apache web server and mysql (MAMP)
+
 MAMP can be found here: https://bitnami.com/stack/mamp/installer
 
 You can:
